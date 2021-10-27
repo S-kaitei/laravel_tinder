@@ -25,7 +25,7 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function update(ProfileRequest $request, $id)
+    public function update($id, ProfileRequest $request)
     {
         $user = User::findOrFail($id);
 
@@ -37,7 +37,7 @@ class UserController extends Controller
 
             $data_url = CheckExtensionServices::checkExtension($fileData, $extension);
             $image = Image::make($data_url);
-            $image->resize(400,400)->save(storage_path() . '/app/public/images/' , $fileNameToStore);
+            $image->resize(400,400)->save(storage_path() . '/app/public/images/' . $fileNameToStore);
 
             $user->img_name = $fileNameToStore;
         }
