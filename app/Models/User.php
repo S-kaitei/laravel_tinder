@@ -44,4 +44,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function toUserId()
+    {
+        return $this->hasMany(Reaction::class, 'to_user_id', 'id');
+    }
+
+    public function fromUserId()
+    {
+        return $this->hasMany(Reaction::class, 'from_user_id', 'id');
+    }
 }
