@@ -12,6 +12,11 @@
           <img src="{{ asset('/storage/images/techpit-match-icon.png') }}">
         </a>
       </li>
+      <li class="messageIcon">
+        <a href="{{route('matching')}}">
+          <i class="fas fa-2x fa-comments"></i>
+        </a>
+      </li>
     </ul>
   </nav>
   <div id="tinderslide">
@@ -19,7 +24,7 @@
         @foreach($users as $user)
         <li data-user_id="{{ $user->id }}">
           <div class="userName">{{ $user->name }}</div>
-          <img src="/storage/images/{{ $user->img_name}}">
+            <img src="/storage/images/{{ $user->img_name}}">
           <div class="like"></div>
           <div class="dislike"></div>
         </li>
