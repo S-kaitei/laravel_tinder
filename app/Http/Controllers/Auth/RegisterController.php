@@ -57,7 +57,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
             'img_name' => ['file', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2000'],
             'self_introduction' => ['string', 'max:255'],
         ]);
@@ -85,14 +85,14 @@ class RegisterController extends Controller
         $image = Image::make($data_url);
 
         //画像を横400px, 縦400pxにリサイズし保存
-        $image->resize(400,400)->save(public_path() . '/storage/app/public/images/' . $fileNameToStore );
+        $image->resize(400,400)->save(storage_path() . '/app/public/images/' . $fileNameToStore );
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'self_introduction' => $data['self_introduction'],
             'sex' => $data['sex'],
-            'img_name' => $data['img_name'],
+            'img_name' => $fileNameToStore,
         ]);
     }
 }

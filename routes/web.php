@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MatchingController;
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,8 @@ use App\Http\Controllers\UserController;
 
 Route::group(['prefix' => 'users', 'middleware' => 'auth'], function () {
     Route::get('show/{id}', [UserController::class, 'show'])->name('users.show');
+    Route::get('edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::post('update/{id}', [UserController::class, 'update'])->name('users.update');
 });
 
 Auth::routes();
@@ -26,3 +30,9 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/matching', [MatchingController::class, 'index'])->name('matching');
+
+Route::group(['prefix' => 'chat', 'middleware' => 'auth'], function () {
+    Route::post('show', [ChatController::class, 'show'])->name('chat.show');
+    Route::post('chat', [ChatController::class, 'chat'])->name('chat.chat');
+});
