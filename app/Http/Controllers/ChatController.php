@@ -73,5 +73,7 @@ class ChatController extends Controller
         $chat->save();
 
         event(new ChatPusher($chat));
+
+        return $chat;
     }
 }
