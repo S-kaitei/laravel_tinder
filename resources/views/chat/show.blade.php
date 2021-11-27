@@ -11,7 +11,7 @@
     </div>
   </header>
   <div class="container">
-    <div class="messagesArea messages">
+    <div class="messagesArea messages" id="chat">
     @foreach($chat_messages as $message)
     <div class="message">
       @if($message->user_id == Auth::id())
