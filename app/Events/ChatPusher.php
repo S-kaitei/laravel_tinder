@@ -34,6 +34,6 @@ class ChatPusher implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('ChatRoomChannel');
+        return new Channel('ChatRoomChannel');
     }
 }
